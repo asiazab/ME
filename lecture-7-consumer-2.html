@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Lecture 7 — Consumer behavior II</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/lecture-shell.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-row">
+        <div class="brand">
+          <p class="brand-kicker" id="brand-kicker"></p>
+          <h1 id="brand-title"></h1>
+          <p id="brand-sub"></p>
+        </div>
+        <div class="header-actions">
+          <div class="mascot-row">
+            <div id="mascot" class="mascot-wrap" aria-hidden="true"></div>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode">
+              <span class="icon theme-icon" aria-hidden="true">☀️</span>
+              <span class="theme-label">Light</span>
+            </button>
+          </div>
+        </div>
+        <a class="home-link" href="index.html">← All lectures</a>
+      </div>
+    </header>
+    <div class="stepper-wrap">
+      <div class="stepper-track" aria-hidden="true"><div class="stepper-fill" id="stepper-fill"></div></div>
+      <div class="stepper-meta">
+        <span>Step <span id="step-current">1</span> / <span id="step-total">1</span></span>
+        <span>Swipe or ← →</span>
+      </div>
+    </div>
+    <div id="step-live" class="sr-only" aria-live="polite"></div>
+    <main id="step-main"></main>
+    <nav class="nav-bar" aria-label="Step navigation">
+      <div class="nav-inner">
+        <button type="button" class="nav-btn nav-btn-secondary" id="btn-prev">← Previous</button>
+        <button type="button" class="nav-btn nav-btn-primary" id="btn-next">Next →</button>
+      </div>
+    </nav>
+    <script>
+      window.LECTURE = {
+        course: "BA1202 · Consumer behavior II",
+        title: "Lecture 7",
+        subtitle: "Budget lines & indifference curves — easy mode",
+        steps: [
+          {
+            title: "Roadmap",
+            lead: "Ordinal approach, budget constraint, indifference curves, equilibrium idea.",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "Ordinal rankings instead of exact utils.",
+                  "What you can afford (budget line).",
+                  "What makes you equally happy (indifference curve).",
+                  "Best affordable bundle (tangency story).",
+                ],
+              },
+            ],
+            viz: "welcome",
+          },
+          {
+            title: "Budget constraint — your real-world fence",
+            lead: "You cannot buy every combo — income and prices fence you in.",
+            blocks: [
+              {
+                type: "p",
+                text: "A budget constraint shows every affordable bundle of two goods given your income and their prices.",
+              },
+              { type: "p", text: "Points inside the line are affordable but leave money unused. Points outside are too expensive." },
+            ],
+            viz: "budgetLine",
+          },
+          {
+            title: "Slope of the budget line",
+            lead: "It tells you the market trade-off between the two goods.",
+            blocks: [
+              {
+                type: "p",
+                text: "Slope equals the relative price: how much of good B you must give up to buy one more unit of good A at market prices.",
+              },
+            ],
+            viz: "budgetLine",
+            vizCaption: "Steeper budget line = relatively more expensive good on the x-axis (holding income fixed).",
+          },
+          {
+            title: "Indifference curve",
+            lead: "All points on the curve feel equally good to you.",
+            blocks: [
+              { type: "p", text: "An indifference curve is a set of bundles that give the same utility / satisfaction." },
+              { type: "p", text: "Higher curves (farther from the origin) usually mean higher satisfaction for normal preferences." },
+            ],
+            viz: "indifference",
+          },
+          {
+            title: "Marginal rate of substitution (MRS)",
+            lead: "How much Y you need as payment to give up a little X and stay equally happy.",
+            blocks: [
+              {
+                type: "p",
+                text: "MRS is the slope of the indifference curve at a point — willingness to trade one good for another while staying on the same curve.",
+              },
+            ],
+            viz: "mrs",
+          },
+          {
+            title: "Consumer equilibrium (the clean story)",
+            lead: "Pick the best bundle you can afford.",
+            blocks: [
+              {
+                type: "p",
+                text: "At the optimal bundle, the budget line touches the highest possible indifference curve — often a tangency point.",
+              },
+              {
+                type: "p",
+                text: "Tangency intuition: MRS equals the price ratio — your personal trade-off matches the market trade-off.",
+              },
+            ],
+            viz: "mrs",
+            vizCaption: "Where slope of IC = slope of budget line (nice case).",
+          },
+          {
+            title: "Corner solutions (real life happens)",
+            lead: "Sometimes the best bundle is on an axis — you buy zero of one good.",
+            blocks: [
+              { type: "p", text: "If you really dislike a good or it is never worth its price, the optimal choice can be a corner." },
+            ],
+            viz: "budgetLine",
+          },
+          {
+            title: "Cardinal vs ordinal — quick recap",
+            lead: "Lecture 6 met numbers; lecture 7 lives in rankings and shapes.",
+            blocks: [{ type: "p", text: "Ordinal tools (ICs) are flexible and match how people actually choose between bundles." }],
+            viz: "cardinalOrdinal",
+          },
+          {
+            title: "Study move that saves energy",
+            lead: "Draw budget line, sketch two ICs, mark tangency, label slopes.",
+            blocks: [
+              { type: "tip", text: "Say it in words: “I cannot reach higher happiness without more money.” That is the whole vibe." },
+            ],
+            viz: "indifference",
+          },
+        ],
+      };
+    </script>
+    <script src="js/lecture-shell.js" defer></script>
+  </body>
+</html>

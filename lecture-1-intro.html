@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Lecture 1 — Introduction (easy mode)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/lecture-shell.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-row">
+        <div class="brand">
+          <p class="brand-kicker" id="brand-kicker"></p>
+          <h1 id="brand-title"></h1>
+          <p id="brand-sub"></p>
+        </div>
+        <div class="header-actions">
+          <div class="mascot-row">
+            <div id="mascot" class="mascot-wrap" aria-hidden="true"></div>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode">
+              <span class="icon theme-icon" aria-hidden="true">☀️</span>
+              <span class="theme-label">Light</span>
+            </button>
+          </div>
+        </div>
+        <a class="home-link" href="index.html">← All lectures</a>
+      </div>
+    </header>
+    <div class="stepper-wrap">
+      <div class="stepper-track" aria-hidden="true"><div class="stepper-fill" id="stepper-fill"></div></div>
+      <div class="stepper-meta">
+        <span>Step <span id="step-current">1</span> / <span id="step-total">1</span></span>
+        <span>Swipe or ← →</span>
+      </div>
+    </div>
+    <div id="step-live" class="sr-only" aria-live="polite"></div>
+    <main id="step-main"></main>
+    <nav class="nav-bar" aria-label="Step navigation">
+      <div class="nav-inner">
+        <button type="button" class="nav-btn nav-btn-secondary" id="btn-prev">← Previous</button>
+        <button type="button" class="nav-btn nav-btn-primary" id="btn-next">Next →</button>
+      </div>
+    </nav>
+    <script>
+      window.LECTURE = {
+        course: "AF 2405 · Principles of Microeconomics",
+        title: "Lecture 1",
+        subtitle: "Introduction — in calm, simple English",
+        steps: [
+          {
+            title: "Welcome — you are not failing, the format is",
+            lead: "Economics sounds scary. This guide breaks one idea per screen.",
+            blocks: [
+              { type: "p", text: "Economics is just a structured way to talk about choices when you cannot have everything." },
+              { type: "tip", text: "If you only remember one thing today: choices have costs — even when money is not involved." },
+            ],
+            viz: "welcome",
+            vizCaption: "Tiny steps beat one giant slide wall.",
+          },
+          {
+            title: "What is economics, really?",
+            lead: "Not memorizing words — learning a lens for decisions.",
+            blocks: [
+              {
+                type: "p",
+                text: "Economics studies how people and societies use limited resources to try to satisfy wants that basically never end.",
+              },
+              { type: "p", text: "It also asks: how should we choose when we cannot buy or do everything we want?" },
+            ],
+            viz: "scarcity",
+            vizCaption: "Limited resources vs many wants = the starting point.",
+          },
+          {
+            title: "Scarcity forces choices",
+            lead: "If everything were free and infinite, we would not need economics.",
+            blocks: [
+              { type: "p", text: "Scarcity means resources are limited: time, money, land, workers, raw materials." },
+              { type: "p", text: "Because things are scarce, every yes to one option is implicitly a no to another." },
+            ],
+            viz: "scarcity",
+          },
+          {
+            title: "Opportunity cost (your hidden price tag)",
+            lead: "The real cost of a choice includes what you give up.",
+            blocks: [
+              {
+                type: "p",
+                text: "Opportunity cost is the value of the next best alternative you give up when you choose something.",
+              },
+              { type: "ul", text: ["Studying tonight → cost might be social time or sleep.", "Buying a phone → cost might be saving for travel."] },
+            ],
+            viz: "opportunity",
+            vizCaption: "You compare what you pick vs the next best thing you skip.",
+          },
+          {
+            title: "Trade-offs are everywhere",
+            lead: "More of one thing usually means less of another.",
+            blocks: [{ type: "p", text: "A trade-off is the balancing act: guns vs butter, work vs leisure, grades vs hobbies." }],
+            viz: "opportunity",
+          },
+          {
+            title: "Purposeful behavior (people try to get what they want)",
+            lead: "Models assume people respond to incentives — not that they are perfect robots.",
+            blocks: [
+              { type: "p", text: "Economists often assume rational self-interest: people try to do what they think makes them better off." },
+              { type: "p", text: "Utility is a fancy word for satisfaction or happiness from consuming something." },
+            ],
+            viz: "marginal",
+            vizCaption: "People aim for outcomes they like — even when they make mistakes.",
+          },
+          {
+            title: "Marginal thinking: the next slice of pizza",
+            lead: "Decisions are often about one more unit, not all units at once.",
+            blocks: [
+              { type: "p", text: "Marginal means extra or additional — like the next hour, next cup, next mile." },
+              {
+                type: "p",
+                text: "Rational choice compares marginal benefit (what you gain from one more) with marginal cost (what you give up for one more).",
+              },
+            ],
+            viz: "marginal",
+            vizCaption: "If the next unit is worth more to you than its cost, you usually take it.",
+          },
+          {
+            title: "Microeconomics vs macroeconomics",
+            lead: "Zoom level: one tree vs the whole forest.",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "Micro: one market, one firm, one consumer, prices of specific goods.",
+                  "Macro: inflation, unemployment, GDP, interest rates, whole economy growth.",
+                ],
+              },
+            ],
+            viz: "microMacro",
+          },
+          {
+            title: "Positive vs normative statements",
+            lead: "Facts vs opinions dressed as facts.",
+            blocks: [
+              { type: "p", text: "Positive economics describes what is or what happened — testable claims." },
+              { type: "p", text: "Normative economics says what should be — values and judgments." },
+            ],
+            viz: "positiveNormative",
+          },
+          {
+            title: "The economic perspective (three habits)",
+            lead: "Scarcity, purposeful choices, marginal comparison.",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "Scarcity and choice: you cannot have everything.",
+                  "Purposeful behavior: people try to improve their situation.",
+                  "Marginal analysis: compare benefits and costs of the next step.",
+                ],
+              },
+            ],
+            viz: "marginal",
+          },
+          {
+            title: "Ten principles — big picture",
+            lead: "Mankiw groups ideas into three buckets (you will see them again and again).",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "How people make decisions (trade-offs, incentives, marginal thinking).",
+                  "How people interact (trade, markets).",
+                  "How the whole economy behaves (productivity, money, inflation).",
+                ],
+              },
+            ],
+            viz: "welcome",
+            vizCaption: "Do not memorize all ten tonight — notice the patterns.",
+          },
+          {
+            title: "Why this course matters for you",
+            lead: "You will read markets like a map instead of like noise.",
+            blocks: [
+              { type: "p", text: "Micro helps you understand prices, competition, costs, and consumer choices in real businesses." },
+              { type: "tip", text: "When you feel bored, come back to one step here. Progress is allowed to be slow." },
+            ],
+            viz: "market",
+            vizCaption: "Markets connect many buyers and many sellers.",
+          },
+        ],
+      };
+    </script>
+    <script src="js/lecture-shell.js" defer></script>
+  </body>
+</html>

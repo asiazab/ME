@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Demand &amp; supply — easy mode</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/lecture-shell.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-row">
+        <div class="brand">
+          <p class="brand-kicker" id="brand-kicker"></p>
+          <h1 id="brand-title"></h1>
+          <p id="brand-sub"></p>
+        </div>
+        <div class="header-actions">
+          <div class="mascot-row">
+            <div id="mascot" class="mascot-wrap" aria-hidden="true"></div>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode">
+              <span class="icon theme-icon" aria-hidden="true">☀️</span>
+              <span class="theme-label">Light</span>
+            </button>
+          </div>
+        </div>
+        <a class="home-link" href="index.html">← All lectures</a>
+      </div>
+    </header>
+    <div class="stepper-wrap">
+      <div class="stepper-track" aria-hidden="true"><div class="stepper-fill" id="stepper-fill"></div></div>
+      <div class="stepper-meta">
+        <span>Step <span id="step-current">1</span> / <span id="step-total">1</span></span>
+        <span>Swipe or ← →</span>
+      </div>
+    </div>
+    <div id="step-live" class="sr-only" aria-live="polite"></div>
+    <main id="step-main"></main>
+    <nav class="nav-bar" aria-label="Step navigation">
+      <div class="nav-inner">
+        <button type="button" class="nav-btn nav-btn-secondary" id="btn-prev">← Previous</button>
+        <button type="button" class="nav-btn nav-btn-primary" id="btn-next">Next →</button>
+      </div>
+    </nav>
+    <script>
+      window.LECTURE = {
+        course: "AF 2405 · Demand and supply",
+        title: "Demand & supply",
+        subtitle: "Markets, curves, equilibrium — calm version",
+        steps: [
+          {
+            title: "What is a market?",
+            lead: "A market is not only a physical place — it is any setup where buyers and sellers meet.",
+            blocks: [
+              { type: "p", text: "A market is a group of buyers and sellers of a particular good or service." },
+              { type: "p", text: "Examples: wheat market, apartment rentals, online app stores — same idea." },
+            ],
+            viz: "market",
+          },
+          {
+            title: "Competitive market (many small players)",
+            lead: "No single buyer or seller can push the price around alone.",
+            blocks: [
+              {
+                type: "p",
+                text: "A competitive market has many buyers and sellers, so each side is tiny compared to the whole market.",
+              },
+              { type: "tip", text: "If you are modeling wheat or stocks, “competitive” is often a useful first guess." },
+            ],
+            viz: "market",
+            vizCaption: "Many buyers + many sellers → price feels “given” to each person.",
+          },
+          {
+            title: "Demand in plain English",
+            lead: "Demand is not one number — it is a whole relationship between price and quantity.",
+            blocks: [
+              {
+                type: "p",
+                text: "Demand shows how much consumers are willing and able to buy at different prices during a period.",
+              },
+              { type: "p", text: "Willing = they want it. Able = they can pay for it. Both matter." },
+            ],
+            viz: "demandCurve",
+          },
+          {
+            title: "Supply in plain English",
+            lead: "Supply is what producers are willing to bring to market at different prices.",
+            blocks: [
+              {
+                type: "p",
+                text: "Supply shows how much producers will offer for sale at different prices during a period.",
+              },
+            ],
+            viz: "supplyCurve",
+          },
+          {
+            title: "Law of demand",
+            lead: "If price goes up, quantity demanded usually goes down — other things equal.",
+            blocks: [
+              { type: "p", text: "Other things equal (ceteris paribus) means we hold income, tastes, and related prices fixed for a moment." },
+              { type: "p", text: "Higher price → fewer people buy, or people buy less." },
+            ],
+            viz: "demandCurve",
+            vizCaption: "Downward slope: price up, quantity demanded down.",
+          },
+          {
+            title: "Law of supply",
+            lead: "If price goes up, quantity supplied usually goes up — other things equal.",
+            blocks: [
+              { type: "p", text: "Higher prices make production more attractive, so firms supply more." },
+              { type: "p", text: "Lower prices → less incentive → smaller quantity supplied." },
+            ],
+            viz: "supplyCurve",
+            vizCaption: "Upward slope: price up, quantity supplied up.",
+          },
+          {
+            title: "Graph: demand curve (D)",
+            lead: "Price on the vertical axis, quantity on the horizontal axis — weird at first, you get used to it.",
+            blocks: [{ type: "p", text: "Each point on D is a price–quantity pair people would choose." }],
+            viz: "demandCurve",
+          },
+          {
+            title: "Graph: supply curve (S)",
+            lead: "Same axes — now producers’ side.",
+            blocks: [{ type: "p", text: "Each point on S is a price–quantity pair firms would sell." }],
+            viz: "supplyCurve",
+          },
+          {
+            title: "Equilibrium: where plans match",
+            lead: "The crossing point is special: quantity demanded equals quantity supplied.",
+            blocks: [
+              { type: "p", text: "Equilibrium price clears the market — no automatic shortage or surplus at that price." },
+              { type: "tip", text: "If price is too high, surplus builds. Too low, shortage builds. The story pushes price toward equilibrium." },
+            ],
+            viz: "equilibrium",
+            vizCaption: "Intersection → equilibrium price P* and quantity Q*.",
+          },
+          {
+            title: "Shifts vs movements along the curve",
+            lead: "Price change moves you along the curve. Other shocks shift the whole curve.",
+            blocks: [
+              { type: "ul", text: ["Movement along D: the good’s own price changed.", "Shift of D: income, tastes, prices of substitutes/complements changed."] },
+            ],
+            viz: "shiftDemandRight",
+            vizCaption: "A shift is a new curve — not the same line sliding on itself.",
+          },
+          {
+            title: "What you will do next in class",
+            lead: "Practice: draw shifts, find new equilibrium, tell a short story in words.",
+            blocks: [
+              { type: "p", text: "Always name: which curve moves, which direction, what happens to P* and Q*." },
+            ],
+            viz: "equilibrium",
+          },
+        ],
+      };
+    </script>
+    <script src="js/lecture-shell.js" defer></script>
+  </body>
+</html>

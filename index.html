@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Microeconomics — gentle lecture guides</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/lecture-shell.css" />
+    <style>
+      .hub {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 20px 16px 48px;
+      }
+      .hub-hero {
+        text-align: center;
+        padding: 8px 0 20px;
+      }
+      .hub-hero h1 {
+        margin: 0 0 10px;
+        font-size: clamp(1.45rem, 4vw, 1.85rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+      }
+      .hub-hero p {
+        margin: 0 auto;
+        max-width: 36ch;
+        color: var(--text-muted);
+        font-size: 1rem;
+        font-weight: 500;
+      }
+      .hub-mascot {
+        width: 88px;
+        height: 88px;
+        margin: 0 auto 12px;
+        border-radius: 22px;
+        background: var(--accent-soft);
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+      .hub-mascot dotlottie-wc,
+      .hub-mascot lottie-player {
+        width: 84px !important;
+        height: 84px !important;
+      }
+      .hub-grid {
+        display: grid;
+        gap: 12px;
+      }
+      @media (min-width: 520px) {
+        .hub-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .hub-card {
+        display: block;
+        padding: 18px 16px;
+        border-radius: var(--radius);
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+        animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .hub-card:nth-child(1) {
+        animation-delay: 0.04s;
+      }
+      .hub-card:nth-child(2) {
+        animation-delay: 0.08s;
+      }
+      .hub-card:nth-child(3) {
+        animation-delay: 0.12s;
+      }
+      .hub-card:nth-child(4) {
+        animation-delay: 0.16s;
+      }
+      .hub-card:nth-child(5) {
+        animation-delay: 0.2s;
+      }
+      .hub-card:nth-child(6) {
+        animation-delay: 0.24s;
+      }
+      .hub-card:nth-child(7) {
+        animation-delay: 0.28s;
+      }
+      .hub-card:nth-child(8) {
+        animation-delay: 0.32s;
+      }
+      .hub-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 40px rgba(61, 109, 245, 0.18);
+      }
+      [data-theme="dark"] .hub-card:hover {
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+      }
+      .hub-card:active {
+        transform: translateY(-1px);
+      }
+      .hub-card--disabled {
+        cursor: not-allowed;
+        opacity: 0.58;
+        pointer-events: none;
+      }
+      .hub-card--disabled:hover {
+        transform: none;
+        box-shadow: var(--shadow);
+      }
+      [data-theme="dark"] .hub-card--disabled:hover {
+        box-shadow: var(--shadow);
+      }
+      .hub-card--disabled .lec-num {
+        background: color-mix(in srgb, var(--border) 80%, transparent);
+        color: var(--text-muted);
+      }
+      .hub-card h2 {
+        margin: 0 0 6px;
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: var(--text);
+      }
+      .hub-card p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.45;
+      }
+      .hub-card .tag {
+        display: inline-block;
+        margin-top: 8px;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .hub-card-inner {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .lec-num {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 1.05rem;
+        font-weight: 800;
+        display: grid;
+        place-items: center;
+        line-height: 1;
+      }
+      .hub-card-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .hub-card-body h2 {
+        margin-top: 0;
+      }
+      .hub-menu-title {
+        margin: 0 0 14px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+      .hub-foot {
+        margin-top: 28px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+    </style>
+  </head>
+  <body class="nav-compact">
+    <header class="app-header">
+      <div class="header-row">
+        <div class="brand">
+          <p class="brand-kicker">AF 2405 / BA1202 helpers</p>
+          <h1 style="font-size: 1.2rem">Pick one lecture</h1>
+          <p id="brand-sub">Tiny steps, plain English, dark mode</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <span class="icon theme-icon" aria-hidden="true">☀️</span>
+            <span class="theme-label">Light</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="hub">
+      <div class="hub-hero">
+        <div class="hub-mascot" id="hub-mascot-big" aria-hidden="true"></div>
+        <h1>Your brain deserves gentle mode</h1>
+        <p>Open a file. Use Next. One idea per screen. No wall of text.</p>
+      </div>
+      <h2 class="hub-menu-title">Choose a guide</h2>
+      <nav class="hub-grid" aria-label="Lecture guides">
+        <a class="hub-card" href="lecture-1-intro.html">
+          <div class="hub-card-inner">
+            <span class="lec-num" aria-hidden="true">L1</span>
+            <div class="hub-card-body">
+              <h2>Introduction</h2>
+              <p>What economics is, scarcity, opportunity cost, micro vs macro.</p>
+              <span class="tag">Lecture 1 · AF 2405</span>
+            </div>
+          </div>
+        </a>
+        <a class="hub-card" href="lecture-2-demand-supply.html">
+          <div class="hub-card-inner">
+            <span class="lec-num" aria-hidden="true">L2</span>
+            <div class="hub-card-body">
+              <h2>Markets &amp; curves</h2>
+              <p>Demand, supply, laws, and how they meet.</p>
+              <span class="tag">Lecture 2 · Demand &amp; supply</span>
+            </div>
+          </div>
+        </a>
+        <a class="hub-card" href="applied-market-pizza-tea.html">
+          <div class="hub-card-inner">
+            <span class="lec-num" aria-hidden="true">L3</span>
+            <div class="hub-card-body">
+              <h2>Applied market analysis</h2>
+              <p>Pizza market + Lipton tea: shifts, floors, ceilings, taxes — from your worksheet PDF.</p>
+              <span class="tag">Lecture 3 · Applied Market Analysis</span>
+            </div>
+          </div>
+        </a>
+        <a class="hub-card" href="lecture-4-elasticity.html">
+          <div class="hub-card-inner">
+            <span class="lec-num" aria-hidden="true">L4</span>
+            <div class="hub-card-body">
+              <h2>Elasticity concepts</h2>
+              <p>Price, cross, and income elasticity; total revenue test; supply elasticity.</p>
+              <span class="tag">Lecture 4 · BA1202</span>
+            </div>
+          </div>
+        </a>
+        <a class="hub-card" href="lecture-5-elasticity.html">
+          <div class="hub-card-inner">
+            <span class="lec-num" aria-hidden="true">L5</span>
+            <div class="hub-card-body">
+              <h2>Elasticity problems</h2>
+              <p>Price elasticity, midpoints, and intuition.</p>
+              <span class="tag">Lecture 5 · Practice sheet</span>
+            </div>
+          </div>
+        </a>
+        <a class="hub-card" href="lecture-6-consumer-1.html">
+          <div class="hub-card-inner">
+            <span class="lec-num" aria-hidden="true">L6</span>
+            <div class="hub-card-body">
+              <h2>Consumer behavior I</h2>
+              <p>Utility, diminishing marginal utility, cardinal vs ordinal.</p>
+              <span class="tag">Lecture 6 · BA1202</span>
+            </div>
+          </div>
+        </a>
+        <a class="hub-card" href="lecture-7-consumer-2.html">
+          <div class="hub-card-inner">
+            <span class="lec-num" aria-hidden="true">L7</span>
+            <div class="hub-card-body">
+              <h2>Consumer behavior II</h2>
+              <p>Budget line, indifference curves, MRS.</p>
+              <span class="tag">Lecture 7 · BA1202</span>
+            </div>
+          </div>
+        </a>
+      </nav>
+      <p class="hub-foot">Tip: keyboard arrows and swipe left/right work on lecture pages. Theme saves on this device.</p>
+    </div>
+    <script>
+      (function () {
+        function applyTheme(t) {
+          document.documentElement.setAttribute("data-theme", t);
+          var btn = document.getElementById("theme-toggle");
+          if (btn) {
+            btn.setAttribute("aria-pressed", t === "dark" ? "true" : "false");
+            btn.querySelector(".theme-label").textContent = t === "dark" ? "Dark" : "Light";
+            btn.querySelector(".theme-icon").textContent = t === "dark" ? "🌙" : "☀️";
+          }
+        }
+        var saved = localStorage.getItem("lecture-theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        applyTheme(saved || (prefersDark ? "dark" : "light"));
+        document.getElementById("theme-toggle").addEventListener("click", function () {
+          var cur = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+          var next = cur === "dark" ? "light" : "dark";
+          localStorage.setItem("lecture-theme", next);
+          applyTheme(next);
+        });
+        function loadLottieInto(el) {
+          if (!el) return;
+          var url = "https://fonts.gstatic.com/s/e/notoemoji/latest/1f393/lottie.json";
+          function fb() {
+            el.innerHTML =
+              '<span style="font-size:30px;line-height:1;animation:mascotBounce 2.2s ease-in-out infinite;display:inline-block">🎓</span>';
+          }
+          function run() {
+            if (!window.lottie) return fb();
+            fetch(url)
+              .then(function (r) {
+                return r.json();
+              })
+              .then(function (data) {
+                el.innerHTML = "";
+                lottie.loadAnimation({
+                  container: el,
+                  renderer: "svg",
+                  loop: true,
+                  autoplay: true,
+                  animationData: data,
+                });
+              })
+              .catch(fb);
+          }
+          if (window.lottie) run();
+          else {
+            var s = document.createElement("script");
+            s.src = "https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js";
+            s.onload = run;
+            s.onerror = fb;
+            document.head.appendChild(s);
+          }
+        }
+        var st = document.createElement("style");
+        st.textContent =
+          "@keyframes mascotBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}";
+        document.head.appendChild(st);
+        loadLottieInto(document.getElementById("hub-mascot-big"));
+      })();
+    </script>
+  </body>
+</html>

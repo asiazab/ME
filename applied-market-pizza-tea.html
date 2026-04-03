@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Lecture 3 — Applied Market Analysis (pizza &amp; tea)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/lecture-shell.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-row">
+        <div class="brand">
+          <p class="brand-kicker" id="brand-kicker"></p>
+          <h1 id="brand-title"></h1>
+          <p id="brand-sub"></p>
+        </div>
+        <div class="header-actions">
+          <div class="mascot-row">
+            <div id="mascot" class="mascot-wrap" aria-hidden="true"></div>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode">
+              <span class="icon theme-icon" aria-hidden="true">☀️</span>
+              <span class="theme-label">Light</span>
+            </button>
+          </div>
+        </div>
+        <a class="home-link" href="index.html">← All lectures</a>
+      </div>
+    </header>
+    <div class="stepper-wrap">
+      <div class="stepper-track" aria-hidden="true"><div class="stepper-fill" id="stepper-fill"></div></div>
+      <div class="stepper-meta">
+        <span>Step <span id="step-current">1</span> / <span id="step-total">1</span></span>
+        <span>Swipe or ← →</span>
+      </div>
+    </div>
+    <div id="step-live" class="sr-only" aria-live="polite"></div>
+    <main id="step-main"></main>
+    <nav class="nav-bar" aria-label="Step navigation">
+      <div class="nav-inner">
+        <button type="button" class="nav-btn nav-btn-secondary" id="btn-prev">← Previous</button>
+        <button type="button" class="nav-btn nav-btn-primary" id="btn-next">Next →</button>
+      </div>
+    </nav>
+    <script>
+      window.LECTURE = {
+        course: "Lecture 3 · Applied Market Analysis",
+        title: "Pizza & Lipton tea",
+        subtitle: "From “Applied Market Analysis Question For Pizza Market” — step by step",
+        steps: [
+          {
+            title: "How to read these questions",
+            lead: "This is your Lecture 3 worksheet. Start from equilibrium: did a curve shift, or are you moving along?",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "Shift = something besides the good’s own price changed (income, tastes, input costs, taxes on sellers, etc.).",
+                  "Movement along = the good’s own price changed — trace the same D or S curve.",
+                ],
+              },
+            ],
+            viz: "equilibrium",
+          },
+          {
+            title: "1) Pizza’s own price rises",
+            lead: "This is not a shift of demand — it is a change in quantity demanded.",
+            blocks: [
+              { type: "p", text: "Higher pizza price → move upward along the demand curve: quantity demanded falls." },
+              { type: "p", text: "Suppliers move along supply: higher price raises quantity supplied." },
+            ],
+            viz: "demandCurve",
+            vizCaption: "Own-price change → slide along the curves toward a new intersection story.",
+          },
+          {
+            title: "2) Burgers (substitute) get pricier",
+            lead: "Pizza looks relatively cheaper — people want more pizza at each pizza price.",
+            blocks: [{ type: "p", text: "Demand for pizza shifts right. Equilibrium price and quantity of pizza both tend to rise." }],
+            viz: "shiftDemandRight",
+          },
+          {
+            title: "3) Cheese (input) costs rise",
+            lead: "Production is more expensive at every output level.",
+            blocks: [{ type: "p", text: "Supply of pizza shifts left. Price tends to rise, quantity tends to fall." }],
+            viz: "shiftSupplyLeft",
+          },
+          {
+            title: "4) Income rises — pizza is normal",
+            lead: "Normal good: you buy more when you are richer.",
+            blocks: [{ type: "p", text: "Demand shifts right. Equilibrium price and quantity both tend to rise." }],
+            viz: "shiftDemandRight",
+          },
+          {
+            title: "5) Tax on restaurants",
+            lead: "Treat it like higher costs of serving meals — supply side story (often).",
+            blocks: [
+              {
+                type: "p",
+                text: "Supply shifts left (or a parallel upward shift in the supply curve). Consumer price rises; quantity falls.",
+              },
+            ],
+            viz: "shiftSupplyLeft",
+          },
+          {
+            title: "6) Price fixed above equilibrium",
+            lead: "A price floor that actually binds.",
+            blocks: [
+              { type: "p", text: "At a high fixed price, quantity supplied exceeds quantity demanded → surplus." },
+            ],
+            viz: "priceFloor",
+          },
+          {
+            title: "7) Price fixed below equilibrium",
+            lead: "A binding price ceiling.",
+            blocks: [{ type: "p", text: "At a low fixed price, quantity demanded exceeds quantity supplied → shortage." }],
+            viz: "priceCeiling",
+          },
+          {
+            title: "8) Health awareness cuts fast food",
+            lead: "Preferences move against pizza.",
+            blocks: [{ type: "p", text: "Demand shifts left. Price and quantity both tend to fall." }],
+            viz: "shiftDemandLeft",
+          },
+          {
+            title: "9) New machines cut production cost",
+            lead: "Cheaper to make each pizza.",
+            blocks: [{ type: "p", text: "Supply shifts right. Price tends to fall; quantity tends to rise." }],
+            viz: "shiftSupplyRight",
+          },
+          {
+            title: "10) Taste shifts to burgers + electricity cheaper",
+            lead: "Two shocks at once — split the story, then combine.",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "Taste toward burgers → pizza demand shifts left.",
+                  "Cheaper electricity → pizza supply shifts right.",
+                  "Price of pizza usually falls; quantity can go either way unless you know how strong each shock is.",
+                ],
+              },
+            ],
+            viz: "equilibrium",
+            vizCaption: "Demand left + supply right → price usually falls; quantity is ambiguous.",
+          },
+          {
+            title: "Lipton tea — same toolkit",
+            lead: "Coffee is a substitute; tea leaves are an input; imports taxes hit costs.",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "Tea’s own price up/down → move along demand & supply.",
+                  "Coffee pricier → tea demand shifts right.",
+                  "Tea leaves pricier → tea supply shifts left.",
+                  "Import tax on leaves → supply shifts left.",
+                  "Cold weather increases taste → demand shifts right.",
+                ],
+              },
+            ],
+            viz: "market",
+          },
+          {
+            title: "You are allowed to go slow",
+            lead: "Draw D and S, label the shock, narrate in one sentence.",
+            blocks: [
+              {
+                type: "tip",
+                text: "Exam sentences: “Demand shifts left because…” beats a mystery graph with no explanation.",
+              },
+            ],
+            viz: "welcome",
+          },
+        ],
+      };
+    </script>
+    <script src="js/lecture-shell.js" defer></script>
+  </body>
+</html>

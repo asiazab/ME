@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Elasticity practice — easy mode</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/lecture-shell.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-row">
+        <div class="brand">
+          <p class="brand-kicker" id="brand-kicker"></p>
+          <h1 id="brand-title"></h1>
+          <p id="brand-sub"></p>
+        </div>
+        <div class="header-actions">
+          <div class="mascot-row">
+            <div id="mascot" class="mascot-wrap" aria-hidden="true"></div>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode">
+              <span class="icon theme-icon" aria-hidden="true">☀️</span>
+              <span class="theme-label">Light</span>
+            </button>
+          </div>
+        </div>
+        <a class="home-link" href="index.html">← All lectures</a>
+      </div>
+    </header>
+    <div class="stepper-wrap">
+      <div class="stepper-track" aria-hidden="true"><div class="stepper-fill" id="stepper-fill"></div></div>
+      <div class="stepper-meta">
+        <span>Step <span id="step-current">1</span> / <span id="step-total">1</span></span>
+        <span>Swipe or ← →</span>
+      </div>
+    </div>
+    <div id="step-live" class="sr-only" aria-live="polite"></div>
+    <main id="step-main"></main>
+    <nav class="nav-bar" aria-label="Step navigation">
+      <div class="nav-inner">
+        <button type="button" class="nav-btn nav-btn-secondary" id="btn-prev">← Previous</button>
+        <button type="button" class="nav-btn nav-btn-primary" id="btn-next">Next →</button>
+      </div>
+    </nav>
+    <script>
+      window.LECTURE = {
+        course: "AF 2405 · Elasticity practice",
+        title: "Elasticity",
+        subtitle: "Numbers with intuition — step by step",
+        steps: [
+          {
+            title: "Elasticity in one breath",
+            lead: "Pairs with Lecture 4 (concepts). This page is practice and exam-style crunch.",
+            blocks: [
+              {
+                type: "p",
+                text: "Price elasticity of demand measures how much quantity demanded responds to a change in price — in percentage terms.",
+              },
+              { type: "tip", text: "Elastic = stretchy response. Inelastic = stiff response." },
+            ],
+            viz: "elasticityStretch",
+          },
+          {
+            title: "Midpoint formula (safe for exams)",
+            lead: "Use averages in the denominator so direction does not trick you.",
+            blocks: [
+              {
+                type: "p",
+                text: "Ed ≈ (ΔQ / average Q) ÷ (ΔP / average P). Your course may write this as midpoint (arc) elasticity.",
+              },
+            ],
+            viz: "elasticityStretch",
+            vizCaption: "Percent change in Q vs percent change in P.",
+          },
+          {
+            title: "Problem style 1 — from two price–quantity points",
+            lead: "Example: Q goes from 1000 to 1500 when P falls from $1.50 to $1.00.",
+            blocks: [
+              { type: "p", text: "Step A: find ΔQ and average Q. Step B: find ΔP and average P. Step C: divide the percent changes." },
+              { type: "p", text: "You should get a positive number for magnitude; economists often report demand elasticity as a positive size for discussion." },
+            ],
+            viz: "demandCurve",
+          },
+          {
+            title: "Problem style 2 — constant elasticity shortcut",
+            lead: "If a problem says elasticity is always 0.9, treat it like a rule: percent moves are tied together.",
+            blocks: [
+              {
+                type: "p",
+                text: "With constant elasticity, you can link percentage price changes to percentage quantity changes without redrawing everything.",
+              },
+            ],
+            viz: "elasticityStretch",
+          },
+          {
+            title: "Cookies example (intuition)",
+            lead: "Price $4 → 50 dozen; price $6 → 40 dozen.",
+            blocks: [
+              { type: "p", text: "First compute elasticity between those points. Then, if elasticity stays constant, you can predict quantity at a new price." },
+              { type: "tip", text: "If demand is elastic (|Ed| > 1), raising price often cuts revenue. If inelastic (|Ed| < 1), raising price can raise revenue." },
+            ],
+            viz: "equilibrium",
+          },
+          {
+            title: "Linear demand Q = 200 − 4P",
+            lead: "Plug prices in to get quantities — elasticity is not the same at every point on a straight line.",
+            blocks: [
+              { type: "p", text: "At P = 10, Q = 200 − 40 = 160. At P = 11, Q = 156. At P = 9, Q = 164." },
+              { type: "p", text: "Between $9 and $11, use midpoint elasticity with those Q and P values." },
+            ],
+            viz: "demandCurve",
+          },
+          {
+            title: "Business travelers vs vacationers",
+            lead: "Same route, different flexibility → different elasticity.",
+            blocks: [
+              { type: "p", text: "Business trips are often less flexible (inelastic): meetings do not move because the ticket got pricier." },
+              { type: "p", text: "Vacationers can delay trips, pick other places, or skip — more elastic demand." },
+            ],
+            viz: "microMacro",
+            vizCaption: "Same good, different people → different elasticities.",
+          },
+          {
+            title: "Complements: coffee and donuts",
+            lead: "If coffee beans get destroyed, coffee price rises — what happens to donuts?",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "Coffee supply shock → higher coffee prices (sketch supply shift).",
+                  "Donuts are complements → demand for donuts can fall → donut price may fall.",
+                  "If both are inelastic, total spending can move in tricky ways — draw it slowly.",
+                ],
+              },
+            ],
+            viz: "shiftSupplyLeft",
+            vizCaption: "Shock in one market spills into a related market.",
+          },
+          {
+            title: "DVD table — price elasticity with income",
+            lead: "Elasticity can change when your budget changes.",
+            blocks: [
+              {
+                type: "p",
+                text: "Between two prices, compute elasticity at low income, then repeat at high income — the schedule shifts.",
+              },
+              { type: "p", text: "Income elasticity uses percent change in Q from income changes, holding price fixed." },
+            ],
+            viz: "shiftDemandRight",
+          },
+          {
+            title: "Exam strategy (low energy edition)",
+            lead: "When stuck, write labels and percentages before worrying about elegance.",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "Label axes P and Q.",
+                  "Write old and new P and Q.",
+                  "Use midpoint unless the question says otherwise.",
+                  "End with: elastic vs inelastic vs unit elastic.",
+                ],
+              },
+            ],
+            viz: "welcome",
+          },
+        ],
+      };
+    </script>
+    <script src="js/lecture-shell.js" defer></script>
+  </body>
+</html>

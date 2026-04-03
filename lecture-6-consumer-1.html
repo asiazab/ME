@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Lecture 6 — Consumer behavior I</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/lecture-shell.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-row">
+        <div class="brand">
+          <p class="brand-kicker" id="brand-kicker"></p>
+          <h1 id="brand-title"></h1>
+          <p id="brand-sub"></p>
+        </div>
+        <div class="header-actions">
+          <div class="mascot-row">
+            <div id="mascot" class="mascot-wrap" aria-hidden="true"></div>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode">
+              <span class="icon theme-icon" aria-hidden="true">☀️</span>
+              <span class="theme-label">Light</span>
+            </button>
+          </div>
+        </div>
+        <a class="home-link" href="index.html">← All lectures</a>
+      </div>
+    </header>
+    <div class="stepper-wrap">
+      <div class="stepper-track" aria-hidden="true"><div class="stepper-fill" id="stepper-fill"></div></div>
+      <div class="stepper-meta">
+        <span>Step <span id="step-current">1</span> / <span id="step-total">1</span></span>
+        <span>Swipe or ← →</span>
+      </div>
+    </div>
+    <div id="step-live" class="sr-only" aria-live="polite"></div>
+    <main id="step-main"></main>
+    <nav class="nav-bar" aria-label="Step navigation">
+      <div class="nav-inner">
+        <button type="button" class="nav-btn nav-btn-secondary" id="btn-prev">← Previous</button>
+        <button type="button" class="nav-btn nav-btn-primary" id="btn-next">Next →</button>
+      </div>
+    </nav>
+    <script>
+      window.LECTURE = {
+        course: "BA1202 · Consumer behavior I",
+        title: "Lecture 6",
+        subtitle: "Utility & how people choose — gentle version",
+        steps: [
+          {
+            title: "What this lecture is about",
+            lead: "We connect feelings of satisfaction to demand curves.",
+            blocks: [
+              { type: "p", text: "Consumers have limited money but many wants. They try to pick bundles that make them as satisfied as possible." },
+            ],
+            viz: "welcome",
+          },
+          {
+            title: "Consumer behavior — simple definition",
+            lead: "How people decide what to buy, when, and from whom.",
+            blocks: [
+              {
+                type: "p",
+                text: "It studies the steps people use to search, buy, use, and replace products and services to meet needs.",
+              },
+            ],
+            viz: "market",
+          },
+          {
+            title: "Utility = satisfaction power",
+            lead: "Utility is not the same as usefulness in everyday speech.",
+            blocks: [
+              { type: "p", text: "Utility is want-satisfying power — the pleasure or satisfaction from consuming something." },
+              {
+                type: "ul",
+                text: [
+                  "A Picasso can have huge utility to a fan but be “useless” for hammering nails.",
+                  "Utility is subjective — different people feel different joy from the same item.",
+                  "We often pretend we can count utils just to illustrate ideas.",
+                ],
+              },
+            ],
+            viz: "utilitySteps",
+          },
+          {
+            title: "Law of diminishing marginal utility",
+            lead: "Each extra unit adds less extra happiness than the one before.",
+            blocks: [
+              {
+                type: "p",
+                text: "First car feels life-changing. Second car is nice. By the fifth car, the extra happiness per car is small for most people.",
+              },
+            ],
+            viz: "utilitySteps",
+            vizCaption: "Marginal utility slopes down as you consume more.",
+          },
+          {
+            title: "Total utility vs marginal utility",
+            lead: "Total = all satisfaction so far. Marginal = satisfaction from the next unit.",
+            blocks: [
+              { type: "p", text: "When marginal utility is positive but falling, total utility still rises — just more slowly." },
+              { type: "tip", text: "When marginal utility hits zero, total utility is usually at its peak for that good (holding other stuff fixed)." },
+            ],
+            viz: "marginal",
+          },
+          {
+            title: "Why demand curves slope down (intuition)",
+            lead: "You are willing to pay less for the 5th slice than the 1st — satisfaction from extras drops.",
+            blocks: [{ type: "p", text: "Lower willingness to pay for additional units links to diminishing marginal utility." }],
+            viz: "demandCurve",
+          },
+          {
+            title: "Cardinal utility theory",
+            lead: "Old-school idea: happiness has measurable numbers.",
+            blocks: [
+              {
+                type: "p",
+                text: "Cardinal utility assumes you can say “this pizza gives me 100 utils” like measuring temperature.",
+              },
+            ],
+            viz: "cardinalOrdinal",
+          },
+          {
+            title: "Ordinal utility theory",
+            lead: "Modern-friendly idea: you can rank bundles without exact utils.",
+            blocks: [
+              {
+                type: "p",
+                text: "Ordinal utility only needs: A is preferred to B. You do not need to know by how many utils.",
+              },
+            ],
+            viz: "cardinalOrdinal",
+          },
+          {
+            title: "Assumptions (do not panic)",
+            lead: "Models simplify so we can see patterns.",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "Consumers are purposeful — they try to get what they like.",
+                  "Preferences are somewhat stable in the short run.",
+                  "More is preferred to less (for “goods,” not bads).",
+                ],
+              },
+            ],
+            viz: "welcome",
+          },
+          {
+            title: "Exceptions / limits",
+            lead: "Real humans are messy — the model is a starting map.",
+            blocks: [
+              { type: "p", text: "Habits, addiction, mental bandwidth, and social pressure can break simple stories." },
+            ],
+            viz: "positiveNormative",
+            vizCaption: "Models vs messy reality — both matter.",
+          },
+        ],
+      };
+    </script>
+    <script src="js/lecture-shell.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Lecture 4 — Elasticity of demand &amp; supply</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/lecture-shell.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-row">
+        <div class="brand">
+          <p class="brand-kicker" id="brand-kicker"></p>
+          <h1 id="brand-title"></h1>
+          <p id="brand-sub"></p>
+        </div>
+        <div class="header-actions">
+          <div class="mascot-row">
+            <div id="mascot" class="mascot-wrap" aria-hidden="true"></div>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode">
+              <span class="icon theme-icon" aria-hidden="true">☀️</span>
+              <span class="theme-label">Light</span>
+            </button>
+          </div>
+        </div>
+        <a class="home-link" href="index.html">← All lectures</a>
+      </div>
+    </header>
+    <div class="stepper-wrap">
+      <div class="stepper-track" aria-hidden="true"><div class="stepper-fill" id="stepper-fill"></div></div>
+      <div class="stepper-meta">
+        <span>Step <span id="step-current">1</span> / <span id="step-total">1</span></span>
+        <span>Swipe or ← →</span>
+      </div>
+    </div>
+    <div id="step-live" class="sr-only" aria-live="polite"></div>
+    <main id="step-main"></main>
+    <nav class="nav-bar" aria-label="Step navigation">
+      <div class="nav-inner">
+        <button type="button" class="nav-btn nav-btn-secondary" id="btn-prev">← Previous</button>
+        <button type="button" class="nav-btn nav-btn-primary" id="btn-next">Next →</button>
+      </div>
+    </nav>
+    <script>
+      window.LECTURE = {
+        course: "BA1202 · Elasticity (Lecture 4)",
+        title: "Lecture 4",
+        subtitle: "Elasticity of demand & supply — easy mode",
+        steps: [
+          {
+            title: "What you will get from this lecture",
+            lead: "Same ideas as your slides — calmer wording.",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "Price elasticity of demand and supply — what they mean and how to use them.",
+                  "Total revenue test: should you raise price or cut it?",
+                  "Cross elasticity (related goods) and income elasticity (normal vs inferior).",
+                ],
+              },
+            ],
+            viz: "welcome",
+          },
+          {
+            title: "Elasticity = responsiveness",
+            lead: "How much one thing reacts when another thing moves.",
+            blocks: [
+              { type: "p", text: "Elasticity measures how sensitive buyers or sellers are to changes in price, income, or prices of other goods." },
+              { type: "p", text: "Bigger elasticity → stronger response (more “stretch”). Smaller elasticity → weak response (more “stiff”)." },
+            ],
+            viz: "elasticityStretch",
+          },
+          {
+            title: "Price elasticity of demand",
+            lead: "Percent change in quantity demanded ÷ percent change in price.",
+            blocks: [
+              {
+                type: "p",
+                text: "By the law of demand, price and quantity move opposite ways, so the raw formula gives a negative number.",
+              },
+              {
+                type: "p",
+                text: "Economists often report the size without the minus sign — they know demand elasticity is negative underneath.",
+              },
+            ],
+            viz: "demandCurve",
+            vizCaption: "We still use the demand curve — now we measure how steep or flat the response is.",
+          },
+          {
+            title: "Elastic vs inelastic demand",
+            lead: "Compare the size of the percentage moves.",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "Elastic: quantity % change is larger than price % change → |E| > 1.",
+                  "Inelastic: quantity % change is smaller than price % change → |E| < 1.",
+                  "Unit elastic: the two percentages match → |E| = 1.",
+                ],
+              },
+            ],
+            viz: "elasticityStretch",
+          },
+          {
+            title: "Perfectly inelastic demand (extreme)",
+            lead: "Price changes; quantity demanded does not.",
+            blocks: [
+              {
+                type: "p",
+                text: "Vertical demand curve idea: Ed = 0. Example story: a person who must buy insulin no matter the price (within reason).",
+              },
+            ],
+            viz: "demandVertical",
+            vizCaption: "Vertical D — same Q no matter P.",
+          },
+          {
+            title: "Perfectly elastic demand (extreme)",
+            lead: "Tiny price cut → buyers want infinite quantity; tiny rise → zero.",
+            blocks: [
+              {
+                type: "p",
+                text: "Horizontal demand at the market price: a firm in a very competitive market is a price taker — Ed treated as ∞ for that story.",
+              },
+            ],
+            viz: "demandHorizontal",
+            vizCaption: "Flat D at the going price — price taker story.",
+          },
+          {
+            title: "Total revenue (TR)",
+            lead: "What sellers collect: price × quantity sold.",
+            blocks: [
+              { type: "p", text: "TR = P × Q. It is not the same as profit — we are only counting money from sales here." },
+            ],
+            viz: "equilibrium",
+            vizCaption: "P and Q together decide revenue.",
+          },
+          {
+            title: "Inelastic demand + higher price",
+            lead: "Quantity falls a little; price rises a lot → TR often goes up.",
+            blocks: [
+              {
+                type: "p",
+                text: "If demand is inelastic, raising price can increase total revenue because people do not cut quantity much.",
+              },
+            ],
+            viz: "demandCurve",
+          },
+          {
+            title: "Elastic demand + higher price",
+            lead: "Quantity falls a lot; price rises a little → TR often goes down.",
+            blocks: [
+              {
+                type: "p",
+                text: "If demand is elastic, raising price can shrink total revenue because many buyers leave or buy much less.",
+              },
+            ],
+            viz: "elasticityStretch",
+          },
+          {
+            title: "Total revenue test — cheat sheet",
+            lead: "What happens to TR if price goes up?",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "|E| > 1 (elastic): TR moves opposite to price → price up, TR down.",
+                  "|E| < 1 (inelastic): TR moves with price → price up, TR up.",
+                  "|E| = 1: TR stays about the same for small changes.",
+                ],
+              },
+            ],
+            viz: "marginal",
+            vizCaption: "Memorize the elastic case first — the other follows by contrast.",
+          },
+          {
+            title: "Cross-price elasticity",
+            lead: "How demand for good X moves when the price of good Y changes.",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "Positive cross elasticity → substitutes (coffee vs tea).",
+                  "Negative cross elasticity → complements (coffee vs sugar).",
+                  "Near zero → unrelated or independent goods.",
+                ],
+              },
+            ],
+            viz: "microMacro",
+            vizCaption: "Sign tells you the relationship between the two goods.",
+          },
+          {
+            title: "Income elasticity",
+            lead: "How demand changes when income changes (prices held fixed).",
+            blocks: [
+              {
+                type: "ul",
+                text: [
+                  "Positive: normal good — you buy more when you are richer (most goods).",
+                  "Negative: inferior good — you buy less when you are richer (e.g., instant noodles for some people).",
+                ],
+              },
+            ],
+            viz: "shiftDemandRight",
+            vizCaption: "Higher income shifts demand right for normal goods.",
+          },
+          {
+            title: "Price elasticity of supply",
+            lead: "How much quantity supplied responds to price.",
+            blocks: [
+              {
+                type: "p",
+                text: "Elastic supply: quantity % change is bigger than price % change (Es > 1). Inelastic supply: the opposite (Es < 1).",
+              },
+              { type: "p", text: "Short run often more inelastic; long run firms can adjust capacity — often more elastic." },
+            ],
+            viz: "supplyCurve",
+          },
+          {
+            title: "Lecture 5 next",
+            lead: "Your practice sheet drills the numbers.",
+            blocks: [
+              {
+                type: "tip",
+                text: "Lecture 4 = concepts and pictures. Lecture 5 = formulas and problem sets. Both are elasticity — same family.",
+              },
+            ],
+            viz: "welcome",
+          },
+        ],
+      };
+    </script>
+    <script src="js/lecture-shell.js" defer></script>
+  </body>
+</html>
