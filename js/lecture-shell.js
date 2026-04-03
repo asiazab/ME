@@ -16,6 +16,10 @@
       .replace(/"/g, "&quot;");
   }
 
+  function pad2(num) {
+    return String(num).padStart(2, "0");
+  }
+
   function renderBlocks(blocks) {
     if (!blocks || !blocks.length) return "";
     return blocks
@@ -292,6 +296,51 @@
     return fn();
   }
 
+  function getStepSourceRef(lecture, step, index) {
+    let ref = null;
+
+    if (step && step.slideRef) {
+      ref = step.slideRef;
+    } else if (Array.isArray(lecture.slideRefs)) {
+      ref = lecture.slideRefs[index] || null;
+    } else if (step && typeof step.slidePage === "number" && lecture.slideDeck) {
+      ref = { deck: lecture.slideDeck, page: step.slidePage };
+    } else if (Array.isArray(lecture.slidePages) && lecture.slideDeck) {
+      const page = lecture.slidePages[index];
+      if (typeof page === "number") {
+        ref = { deck: lecture.slideDeck, page };
+      }
+    }
+
+    if (!ref) return null;
+    if (typeof ref === "number" && lecture.slideDeck) {
+      ref = { deck: lecture.slideDeck, page: ref };
+    }
+
+    const normalized = { ...ref };
+    if (!normalized.src && normalized.deck && normalized.page) {
+      normalized.src = `assets/lecture-images/${normalized.deck}/page-${pad2(normalized.page)}.png`;
+    }
+    return normalized.src ? normalized : null;
+  }
+
+  function renderSourceFigure(lecture, sourceRef) {
+    if (!sourceRef || !sourceRef.src) return "";
+    const alt = sourceRef.alt || `${lecture.title} source slide`;
+    const sourceLabel =
+      sourceRef.label || lecture.slideSourceLabel || "Uploaded lecture material";
+    const pageLabel =
+      typeof sourceRef.page === "number" ? `Slide ${sourceRef.page}` : "Source snapshot";
+    const note = sourceRef.note ? ` · ${sourceRef.note}` : "";
+
+    return `
+      <figure class="source-figure step-animate-soft">
+        <img src="${escapeHtml(sourceRef.src)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" />
+        <figcaption>${escapeHtml(sourceLabel)} · ${escapeHtml(pageLabel)}${escapeHtml(note)}</figcaption>
+      </figure>
+    `;
+  }
+
   function initTheme() {
     const saved = localStorage.getItem("lecture-theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -405,6 +454,8 @@
       curEl.textContent = String(i + 1);
 
       const vizHtml = renderViz(s.viz);
+      const sourceRef = getStepSourceRef(L, s, i);
+      const sourceHtml = renderSourceFigure(L, sourceRef);
       const cap = s.vizCaption
         ? `<p class="viz-caption">${escapeHtml(s.vizCaption)}</p>`
         : "";
@@ -414,6 +465,7 @@
           <h2 id="step-title" class="step-title">${escapeHtml(s.title)}</h2>
           ${s.lead ? `<p class="step-lead">${escapeHtml(s.lead)}</p>` : ""}
           ${renderBlocks(s.blocks)}
+          ${sourceHtml}
           ${
             vizHtml
               ? `<div class="viz" role="img" aria-label="Illustration">${vizHtml}</div>${cap}`
@@ -422,11 +474,22 @@
         </article>
       `;
 
+      main.querySelectorAll(".source-figure img").forEach((img) => {
+        img.addEventListener(
+          "error",
+          () => {
+            const figure = img.closest(".source-figure");
+            if (figure) figure.remove();
+          },
+          { once: true }
+        );
+      });
+
       if (live) live.textContent = `Step ${i + 1} of ${n}: ${s.title}`;
 
       prev.disabled = i === 0;
       next.disabled = i === n - 1;
-      next.textContent = i === n - 1 ? "Done ✓" : "Next →";
+      next.textContent = i === n - 1 ? "Done ♡" : "Next →";
 
       history.replaceState(null, "", "#step-" + (i + 1));
     }
@@ -443,7 +506,7 @@
     next.addEventListener("click", () => {
       if (i < n - 1) go(1);
       else {
-        next.textContent = "Nice!";
+        next.textContent = "Cute!";
         setTimeout(() => {
           next.textContent = "Next →";
         }, 900);
